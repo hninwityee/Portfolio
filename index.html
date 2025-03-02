@@ -6,7 +6,6 @@
     <title>Hnin Wit Yee | AI & Full-Stack Developer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* Basic CSS for structure - Customize colors/fonts later */
         body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; line-height: 1.6; }
         header { background: #2d3436; color: white; text-align: center; padding: 2rem; }
         nav { background: #34495e; padding: 1rem; text-align: center; }
@@ -42,13 +41,20 @@
     <!-- About Section -->
     <section id="about">
         <h2>About Me</h2>
-        <p>Experienced developer with 12+ years in software delivery, currently pursuing a Master of Artificial Intelligence at Victoria University (Wellington). Passionate about bridging AI/ML with real-world systems.</p>
+        <p>Experienced Full-Stack Developer with 12+ years in software delivery, currently pursuing a Master of Artificial Intelligence at Victoria University (Wellington). Passionate about bridging AI/ML with real-world systems to solve complex problems.</p>
     </section>
 
     <!-- Projects Section -->
     <section id="projects">
-        <h2>Featured Projects</h2>
-        <div id="project-container"></div> <!-- JavaScript will populate this -->
+        <h2>Projects</h2>
+
+        <!-- Professional Projects -->
+        <h3>Professional Projects</h3>
+        <div id="professional-projects"></div>
+
+        <!-- Academic Projects -->
+        <h3>Academic Projects</h3>
+        <div id="academic-projects"></div>
     </section>
 
     <!-- Skills Section -->
@@ -59,8 +65,12 @@
             <div class="skill-item">JavaScript</div>
             <div class="skill-item">React</div>
             <div class="skill-item">Node.js</div>
-            <div class="skill-item">AWS</div>
+            <div class="skill-item">TensorFlow</div>
             <div class="skill-item">SQL</div>
+            <div class="skill-item">ASP.NET</div>
+            <div class="skill-item">Swift</div>
+            <div class="skill-item">OutSystems</div>
+            <div class="skill-item">AWS</div>
         </div>
     </section>
 
@@ -76,29 +86,63 @@
     </section>
 
     <script>
-        // Dynamic Project Loading
-        const projects = [
+        // Professional Projects
+        const professionalProjects = [
             {
-                title: "AI-Powered Transport Analytics",
-                description: "Developed a predictive model for public transport efficiency using Python and TensorFlow.",
-                tech: "Python, TensorFlow, Pandas",
+                title: "Track Access Management System",
+                description: "Led the development of a system for submitting and automating Track Access Requests, ensuring safer work premises.",
+                tech: "OutSystems",
+                outcome: "Reduced manual errors by 30% and improved approval process efficiency.",
                 link: "#"
             },
             {
-                title: "HR Management System",
-                description: "Led a team to build a low-code HR platform with OutSystems, used by 50+ companies.",
-                tech: "OutSystems, C#, SQL",
+                title: "Dynamic Bus Schedule Optimization",
+                description: "Developed a hybrid DRL-ES framework to optimize bus schedules using real-time data, reducing passenger waiting times by 20%.",
+                tech: "Python, TensorFlow, Reinforcement Learning",
+                outcome: "Improved fleet efficiency and reduced operational costs.",
                 link: "#"
             }
         ];
 
-        const projectContainer = document.getElementById('project-container');
-        projects.forEach(project => {
-            projectContainer.innerHTML += `
+        const professionalContainer = document.getElementById('professional-projects');
+        professionalProjects.forEach(project => {
+            professionalContainer.innerHTML += `
                 <div class="project-card">
                     <h3>${project.title}</h3>
                     <p>${project.description}</p>
                     <p><strong>Tech:</strong> ${project.tech}</p>
+                    <p><strong>Outcome:</strong> ${project.outcome}</p>
+                    <a href="${project.link}" target="_blank">View Project</a>
+                </div>
+            `;
+        });
+
+        // Academic Projects
+        const academicProjects = [
+            {
+                title: "Evolutionary Algorithms for Optimization",
+                description: "Implemented Evolution Strategies (ES) and Differential Evolution (DE) to optimize complex functions like Rosenbrock and Griewank.",
+                tech: "Python, NumPy",
+                outcome: "Achieved convergence to near-optimal solutions for high-dimensional problems.",
+                link: "#"
+            },
+            {
+                title: "Genetic Programming for Image Classification",
+                description: "Developed a feature extraction model using Genetic Programming (GP) for image classification tasks.",
+                tech: "Python, DEAP, SVM",
+                outcome: "Achieved 98% accuracy on test datasets.",
+                link: "#"
+            }
+        ];
+
+        const academicContainer = document.getElementById('academic-projects');
+        academicProjects.forEach(project => {
+            academicContainer.innerHTML += `
+                <div class="project-card">
+                    <h3>${project.title}</h3>
+                    <p>${project.description}</p>
+                    <p><strong>Tech:</strong> ${project.tech}</p>
+                    <p><strong>Outcome:</strong> ${project.outcome}</p>
                     <a href="${project.link}" target="_blank">View Project</a>
                 </div>
             `;
