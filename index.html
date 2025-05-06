@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hnin Wit Yee | AI & Full-Stack Developer</title>
+    <title>Hnin Wit Yee | Software Developer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* General Styles */
@@ -13,14 +13,32 @@
             padding: 0;
             line-height: 1.6;
             background-color: #f4f4f9;
+            background-image: url('https://images.unsplash.com/photo-1557682250-33bd709cbe85?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'); /* Placeholder tech-themed image */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-opacity: 0.1; /* Note: Opacity requires a wrapper or overlay */
             color: #333;
         }
 
+        /* Wrapper for background opacity */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9); /* Semi-transparent overlay for readability */
+            z-index: -1;
+        }
+
         header {
-            background: #2d3436;
+            background: linear-gradient(135deg, #003366 0%, #005588 100%); /* Gradient for header */
             color: white;
             text-align: center;
             padding: 2rem;
+            animation: fadeIn 1s ease-in;
         }
 
         nav {
@@ -34,16 +52,50 @@
             margin: 0 1rem;
             text-decoration: none;
             font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f0f0f0;
         }
 
         section {
             padding: 2rem;
             max-width: 1200px;
             margin: 0 auto;
-            background: white;
+            background: rgba(255, 255, 255, 0.95); /* Slightly transparent white for depth */
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+            animation-delay: 0.2s;
+        }
+
+        #about h2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #003366;
+            background-color: #f0f0f0;
+            padding: 10px;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        #about p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin: 15px 0;
+        }
+
+        #about a {
+            color: #003366;
+            text-decoration: none;
+        }
+
+        #about a:hover {
+            text-decoration: underline;
         }
 
         .project-card {
@@ -52,6 +104,13 @@
             margin: 1rem 0;
             border-radius: 8px;
             background: #f9f9f9;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            border-color: #003366;
         }
 
         .skills-container {
@@ -66,6 +125,12 @@
             text-align: center;
             border-radius: 8px;
             font-weight: bold;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: scale(1.05);
+            background-color: #d0d0d0;
         }
 
         form {
@@ -82,22 +147,24 @@
         }
 
         button {
-            background: #34495e;
+            background: #003366;
             color: white;
             padding: 0.5rem 1rem;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
         }
 
         button:hover {
-            background: #2d3436;
+            background: #002244;
+            transform: scale(1.05);
         }
 
         /* Tab Styles */
         .tab {
             overflow: hidden;
-            border-bottom: 2px solid #34495e;
+            border-bottom: 2px solid #003366;
             margin-bottom: 1rem;
         }
 
@@ -110,7 +177,7 @@
             padding: 1rem 2rem;
             transition: 0.3s;
             font-size: 1rem;
-            color: #34495e;
+            color: #003366;
         }
 
         .tab button:hover {
@@ -118,17 +185,51 @@
         }
 
         .tab button.active {
-            background-color: #34495e;
+            background-color: #003366;
             color: white;
         }
 
         .tabcontent {
             display: none;
             padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
 
         .tabcontent.active {
             display: block;
+            opacity: 1;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Accessibility: Disable animations for reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            header, section, .project-card, .skill-item, button, .tabcontent {
+                animation: none;
+                transition: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            section {
+                padding: 1rem;
+            }
+            #about h2 {
+                font-size: 20px;
+            }
+            #about p {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -136,10 +237,9 @@
     <!-- Header Section -->
     <header>
         <h1>Hnin Wit Yee</h1>
-        <p>Full-Stack Developer & AI Graduate Candidate</p>
+        <p>Software Developer & AI Graduate Candidate</p>
         <div>
-            <a href="https://github.com/yourusername" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:1hninwityee@gmail.com"><i class="fas fa-envelope"></i></a>
             <a href="Hnin_CV.pdf" download><button>Download CV</button></a>
         </div>
     </header>
@@ -155,13 +255,9 @@
     <!-- About Section -->
     <section id="about">
         <h2>About Me</h2>
-        <p>
-            I am an experienced Full-Stack Developer with over 12 years of expertise in software delivery, currently pursuing a Master of Artificial Intelligence at Victoria University in Wellington, New Zealand. My passion lies in bridging the gap between AI/ML technologies and real-world systems to solve complex problems.
-            <br><br>
-            Throughout my career, I have led the development of mission-critical systems for public transportation, education, and government sectors. My technical expertise spans across <strong>ASP.NET</strong>, <strong>Python</strong>, <strong>JavaScript</strong>, and <strong>AI/ML frameworks</strong>. I am particularly skilled in optimizing workflows, automating processes, and delivering scalable solutions that drive operational efficiency.
-            <br><br>
-            In my academic journey, I am exploring cutting-edge AI techniques, including <strong>Reinforcement Learning</strong>, <strong>Evolutionary Algorithms</strong>, and <strong>Genetic Programming</strong>, to solve real-world challenges such as dynamic bus scheduling optimization. My goal is to leverage AI to create smarter, more efficient systems that benefit both organizations and end-users.
-        </p>
+        <p>I am a software developer with over 12 years of experience in web and mobile technologies, specializing in ASP.NET, C#, and VB.NET. I build reliable applications and solve complex problems, even under tight schedules.</p>
+        <p>I hold a Master’s in Information Systems from Nanyang Technological University, Singapore, and am pursuing a Master’s in Artificial Intelligence at Victoria University of Wellington, expected to finish in October 2025. I use AI techniques to build smarter systems that solve real-world challenges.</p>
+        <p>I am passionate about coding and staying updated with new technologies. Explore my <a href="#projects">projects</a> to see my work, or contact me at <a href="mailto:1hninwityee@gmail.com">1hninwityee@gmail.com</a> to discuss how I can contribute to your team.</p>
     </section>
 
     <!-- Projects Section -->
@@ -186,28 +282,31 @@
     <section id="skills">
         <h2>Technical Skills</h2>
         <div class="skills-container">
-            <div class="skill-item">Python</div>
-            <div class="skill-item">JavaScript</div>
-            <div class="skill-item">React</div>
-            <div class="skill-item">Node.js</div>
-            <div class="skill-item">TensorFlow</div>
-            <div class="skill-item">SQL</div>
+            <div class="skill-item">C#</div>
+            <div class="skill-item">VB.NET</div>
             <div class="skill-item">ASP.NET</div>
             <div class="skill-item">Swift</div>
-            <div class="skill-item">OutSystems</div>
-            <div class="skill-item">AWS</div>
+            <div class="skill-item">Objective-C</div>
+            <div class="skill-item">PHP</div>
+            <div class="skill-item">JavaScript</div>
+            <div class="skill-item">jQuery</div>
+            <div class="skill-item">HTML</div>
+            <div class="skill-item">Outsystems</div>
+            <div class="skill-item">Joomla</div>
+            <div class="skill-item">MS SQL Server</div>
+            <div class="skill-item">MySQL</div>
+            <div class="skill-item">SQLite</div>
+            <div class="skill-item">Python</div>
+            <div class="skill-item">TensorFlow</div>
         </div>
     </section>
 
-    <!-- Contact Form -->
+    <!-- Contact Section -->
     <section id="contact">
-        <h2>Get in Touch</h2>
-        <form action="https://formspree.io/f/your-form-id" method="POST">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
+        <h2>Contact Me</h2>
+        <p>Reach out to discuss opportunities or collaborations.</p>
+        <p>Email: <a href="mailto:1hninwityee@gmail.com">1hninwityee@gmail.com</a></p>
+        <p>Phone: +64 02902507766</p>
     </section>
 
     <script>
@@ -216,233 +315,233 @@
             const tabcontent = document.getElementsByClassName("tabcontent");
             for (let i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].style.display = "none";
+                tabcontent[i].style.opacity = "0";
             }
             const tablinks = document.getElementsByClassName("tablinks");
             for (let i = 0; i < tablinks.length; i++) {
                 tablinks[i].className = tablinks[i].className.replace(" active", "");
             }
-            document.getElementById(tabName).style.display = "block";
+            const activeTab = document.getElementById(tabName);
+            activeTab.style.display = "block";
+            setTimeout(() => { activeTab.style.opacity = "1"; }, 10);
             evt.currentTarget.className += " active";
         }
 
         // Set default tab
         document.getElementById("defaultOpen").click();
 
-       // Professional Projects
-    const professionalProjects = [
-        {
-            title: "Track Access Management System",
-            description: `
-                Led the development of a system to automate Track Access Requests and approvals, ensuring safer work premises by checking track occupancy at stations.
-                <br><br>
-                <strong>Technical Details:</strong>
-                - Built using <strong>OutSystems</strong> for rapid application development.
-                - Integrated with backend systems for real-time track occupancy checks.
-                - Automated approval workflows to reduce manual intervention.
-                - Designed user-friendly interfaces for seamless request submissions.
-            `,
-            tech: "OutSystems, JavaScript, SQL",
-            outcome: "Reduced manual errors by 30% and improved approval process efficiency.",
-            link: "#"
-        },
-        {
-            title: "Electrical Safety Audit",
-            description: `
-                Developed an iPad application for auditors to conduct safety inspections, attach comments and photos, and sync data to a backend system for reporting.
-                <br><br>
-                <strong>Technical Details:</strong>
-                - Built using <strong>Swift</strong> and <strong>Core Data</strong> for offline data storage.
-                - Integrated with a backend system built on <strong>ASP.NET VB</strong> for data synchronization.
-                - Enabled real-time updates and follow-ups for serious cases.
-                - Generated detailed reports for management review.
-            `,
-            tech: "Swift, Core Data, ASP.NET VB, MSSQL",
-            outcome: "Streamlined inspection workflows and improved data accuracy.",
-            link: "#"
-        },
-        {
-            title: "Depot Management System",
-            description: `
-                Automated Train Requisition Form processes and approval workflows, reducing human errors in depot operations.
-                <br><br>
-                <strong>Technical Details:</strong>
-                - Developed using <strong>ASP.NET VB</strong> and <strong>HTML5</strong> for frontend interfaces.
-                - Implemented automated workflows to manage daily train activities and contractor work.
-                - Integrated with SQL databases for data storage and retrieval.
-                - Designed a systematic recording system for track access and depot operations.
-            `,
-            tech: "ASP.NET VB, HTML5, MSSQL",
-            outcome: "Improved operational efficiency and reduced manual workload.",
-            link: "#"
-        },
-        {
-            title: "Rail Corrective Maintenance System",
-            description: `
-                Developed a system for submitting fault cases, notifying contractors, and tracking repair statuses.
-                <br><br>
-                <strong>Technical Details:</strong>
-                - Built using <strong>ASP.NET VB</strong> and <strong>HTML5</strong> for user interfaces.
-                - Integrated with backend systems for real-time notifications and status updates.
-                - Enabled contractors to update findings and completion statuses.
-                - Generated system reports for management to monitor progress.
-            `,
-            tech: "ASP.NET VB, HTML5, MSSQL",
-            outcome: "Enhanced fault resolution efficiency and improved communication.",
-            link: "#"
-        },
-        {
-            title: "Qualification Tracking System",
-            description: `
-                Designed a system to track staff and contractor qualifications, ensuring compliance with safety standards.
-                <br><br>
-                <strong>Technical Details:</strong>
-                - Developed using <strong>ASP.NET VB</strong> and <strong>JavaScript</strong> for frontend interactivity.
-                - Integrated with <strong>MSSQL</strong> for storing qualification and training data.
-                - Automated notifications for qualification expiry and training schedules.
-                - Enabled department offices to manage staff qualifications efficiently.
-            `,
-            tech: "ASP.NET VB, JavaScript, MSSQL",
-            outcome: "Reduced compliance risks and improved training scheduling.",
-            link: "#"
-        },
-        {
-            title: "Claims and Complaints Recording System",
-            description: `
-                Developed a system for recording customer claims and complaints, automating workflows and SMS notifications.
-                <br><br>
-                <strong>Technical Details:</strong>
-                - Built using <strong>ASP.NET VB</strong> with <strong>AJAX</strong> for seamless user interactions.
-                - Integrated SMS notifications for claim approvals and refund updates.
-                - Automated workflows to streamline claim processing.
-                - Enabled station managers to track and resolve complaints efficiently.
-            `,
-            tech: "ASP.NET VB, AJAX, JavaScript, MSSQL",
-            outcome: "Improved customer satisfaction and streamlined claim processing.",
-            link: "#"
-        },
-        {
-            title: "IRIS Enhancement System",
-            description: `
-                Enhanced the IRIS system to manage shop and station facility information, including API development for mobile apps.
-                <br><br>
-                <strong>Technical Details:</strong>
-                - Developed APIs for iOS and Android apps using <strong>ASP.NET VB</strong>.
-                - Integrated with <strong>MSSQL</strong> for data storage and retrieval.
-                - Enhanced user interfaces for managing shop and facility information.
-                - Added FAQ and station facility management modules.
-            `,
-            tech: "ASP.NET VB, JavaScript, MSSQL",
-            outcome: "Improved system functionality and user experience.",
-            link: "#"
-        },
-        {
-            title: "PEB Web Portal",
-            description: `
-                Developed a portal for engineers to apply for exams and certifications, with online payment integration.
-                <br><br>
-                <strong>Technical Details:</strong>
-                - Built using <strong>ASP.NET C#</strong> with <strong>AJAX</strong> for dynamic user interactions.
-                - Integrated online payment gateways for exam fees.
-                - Enabled course organizers to apply for CPD events.
-                - Automated certification renewal workflows.
-            `,
-            tech: "ASP.NET C#, AJAX, JavaScript, MSSQL",
-            outcome: "Streamlined certification processes and improved user convenience.",
-            link: "#"
-        },
-        {
-            title: "NUS Research Experiment Application",
-            description: `
-                Built an e-Commerce and Windows application for collaborative online shopping and split-screen functionality.
-                <br><br>
-                <strong>Technical Details:</strong>
-                - Developed using <strong>ASP.NET C#</strong> and <strong>Client-Server Socket Programming</strong>.
-                - Enabled real-time collaboration and split-screen functionality.
-                - Integrated with SQL databases for data storage.
-                - Designed user-friendly interfaces for seamless shopping experiences.
-            `,
-            tech: "ASP.NET C#, Client-Server Socket Programming, JavaScript, MSSQL",
-            outcome: "Enhanced research capabilities and user collaboration.",
-            link: "#"
-        },
-        {
-            title: "PLMGS Survey Management System",
-            description: `
-                Developed a survey portal for students, teachers, and staff, with report generation capabilities.
-                <br><br>
-                <strong>Technical Details:</strong>
-                - Built using <strong>PHP</strong> and <strong>Joomla</strong> for rapid development.
-                - Integrated with <strong>MySQL</strong> for data storage.
-                - Enabled admin staff to generate survey reports with multiple criteria.
-                - Designed user-friendly interfaces for survey participation.
-            `,
-            tech: "PHP, Joomla, MySQL",
-            outcome: "Improved data collection and analysis for decision-making.",
-            link: "#"
-        },
-        {
-            title: "PSD e-Test System",
-            description: `
-                Created an e-Test system for government servants, enabling MCQ creation, batch uploads, and test assignments.
-                <br><br>
-                <strong>Technical Details:</strong>
-                - Developed using <strong>ASP.NET C#</strong> and <strong>JavaScript</strong>.
-                - Enabled batch uploads of MCQs for efficient test creation.
-                - Automated test paper generation and candidate assignments.
-                - Integrated with <strong>MSSQL</strong> for data storage.
-            `,
-            tech: "ASP.NET C#, JavaScript, MSSQL",
-            outcome: "Streamlined exam administration and improved efficiency.",
-            link: "#"
-        },
-        {
-            title: "Hivelocity Event Management System",
-            description: `
-                Developed a web-based system for managing events, participant profiles, and registrations.
-                <br><br>
-                <strong>Technical Details:</strong>
-                - Built using <strong>PHP</strong> for backend logic.
-                - Designed user-friendly interfaces for event registration and management.
-                - Integrated with databases for storing participant profiles and payment details.
-                - Enabled public registration for events via the website.
-            `,
-            tech: "PHP, MySQL",
-            outcome: "Improved event management efficiency and user experience.",
-            link: "#"
-        }
-    ];
-    
-    const professionalContainer = document.getElementById('professional-projects');
-    professionalProjects.forEach(project => {
-        professionalContainer.innerHTML += `
-            <div class="project-card">
-                <h3>${project.title}</h3>
-                <p>${project.description}</p>
-                <p><strong>Tech:</strong> ${project.tech}</p>
-                <p><strong>Outcome:</strong> ${project.outcome}</p>
-            </div>
-        `;
-    });
-          
+        // Professional Projects
+        const professionalProjects = [
+            {
+                title: "Track Access Management System",
+                description: `
+                    Led the development of a system to automate Track Access Requests and approvals, ensuring safer work premises. Rewrote the system from Outsystems to ASP.NET and C# due to budget constraints, maintaining functionality and improving performance.
+                    <br><br>
+                    <strong>Technical Details:</strong>
+                    - Initially built using <strong>Outsystems</strong>, later rewritten with <strong>ASP.NET</strong> and <strong>C#</strong>.
+                    - Integrated with backend systems for real-time track occupancy checks.
+                    - Automated approval workflows to reduce manual intervention.
+                    - Designed user-friendly interfaces for seamless request submissions.
+                `,
+                tech: "Outsystems, ASP.NET, C#, JavaScript, MS SQL Server",
+                outcome: "Reduced manual errors by 30% and improved approval process efficiency.",
+                link: "#"
+            },
+            {
+                title: "Electrical Safety Audit",
+                description: `
+                    Developed an iPad application for auditors to conduct safety inspections, attach comments and photos, and sync data to a backend system for reporting.
+                    <br><br>
+                    <strong>Technical Details:</strong>
+                    - Built using <strong>Swift</strong> and <strong>Core Data</strong> for offline data storage.
+                    - Integrated with a backend system built on <strong>ASP.NET VB</strong> for data synchronization.
+                    - Enabled real-time updates and follow-ups for serious cases.
+                    - Generated detailed reports for management review.
+                `,
+                tech: "Swift, Core Data, ASP.NET VB, MS SQL Server",
+                outcome: "Streamlined inspection workflows and improved data accuracy.",
+                link: "#"
+            },
+            {
+                title: "Depot Management System",
+                description: `
+                    Automated Train Requisition Form processes and approval workflows, reducing human errors in depot operations.
+                    <br><br>
+                    <strong>Technical Details:</strong>
+                    - Developed using <strong>ASP.NET VB</strong> and <strong>HTML5</strong> for frontend interfaces.
+                    - Implemented automated workflows to manage daily train activities and contractor work.
+                    - Integrated with <strong>MS SQL Server</strong> for data storage and retrieval.
+                    - Designed a systematic recording system for track access and depot operations.
+                `,
+                tech: "ASP.NET VB, HTML5, MS SQL Server",
+                outcome: "Improved operational efficiency and reduced manual workload.",
+                link: "#"
+            },
+            {
+                title: "Rail Corrective Maintenance System",
+                description: `
+                    Developed a system for submitting fault cases, notifying contractors, and tracking repair statuses.
+                    <br><br>
+                    <strong>Technical Details:</strong>
+                    - Built using <strong>ASP.NET VB</strong> and <strong>HTML5</strong> for user interfaces.
+                    - Integrated with backend systems for real-time notifications and status updates.
+                    - Enabled contractors to update findings and completion statuses.
+                    - Generated system reports for management to monitor progress.
+                `,
+                tech: "ASP.NET VB, HTML5, MS SQL Server",
+                outcome: "Enhanced fault resolution efficiency and improved communication.",
+                link: "#"
+            },
+            {
+                title: "Qualification Tracking System",
+                description: `
+                    Designed a system to track staff and contractor qualifications, ensuring compliance with safety standards.
+                    <br><br>
+                    <strong>Technical Details:</strong>
+                    - Developed using <strong>ASP.NET VB</strong> and <strong>JavaScript</strong> for frontend interactivity.
+                    - Integrated with <strong>MS SQL Server</strong> for storing qualification and training data.
+                    - Automated notifications for qualification expiry and training schedules.
+                    - Enabled department offices to manage staff qualifications efficiently.
+                `,
+                tech: "ASP.NET VB, JavaScript, MS SQL Server",
+                outcome: "Reduced compliance risks and improved training scheduling.",
+                link: "#"
+            },
+            {
+                title: "Claims and Complaints Recording System",
+                description: `
+                    Developed a system for recording customer claims and complaints, automating workflows and SMS notifications.
+                    <br><br>
+                    <strong>Technical Details:</strong>
+                    - Built using <strong>ASP.NET VB</strong> with <strong>AJAX</strong> for seamless user interactions.
+                    - Integrated SMS notifications for claim approvals and refund updates.
+                    - Automated workflows to streamline claim processing.
+                    - Enabled station managers to track and resolve complaints efficiently.
+                `,
+                tech: "ASP.NET VB, AJAX, JavaScript, MS SQL Server",
+                outcome: "Improved customer satisfaction and streamlined claim processing.",
+                link: "#"
+            },
+            {
+                title: "IRIS Enhancement System",
+                description: `
+                    Enhanced the IRIS system to manage shop and station facility information, including API development for mobile apps.
+                    <br><br>
+                    <strong>Technical Details:</strong>
+                    - Developed APIs for iOS and Android apps using <strong>ASP.NET VB</strong>.
+                    - Integrated with <strong>MS SQL Server</strong> for data storage and retrieval.
+                    - Enhanced user interfaces for managing shop and facility information.
+                    - Added FAQ and station facility management modules.
+                `,
+                tech: "ASP.NET VB, JavaScript, MS SQL Server",
+                outcome: "Improved system functionality and user experience.",
+                link: "#"
+            },
+            {
+                title: "PEB Web Portal",
+                description: `
+                    Developed a portal for engineers to apply for exams and certifications, with online payment integration.
+                    <br><br>
+                    <strong>Technical Details:</strong>
+                    - Built using <strong>ASP.NET C#</strong> with <strong>AJAX</strong> for dynamic user interactions.
+                    - Integrated online payment gateways for exam fees.
+                    - Enabled course organizers to apply for CPD events.
+                    - Automated certification renewal workflows.
+                `,
+                tech: "ASP.NET C#, AJAX, JavaScript, MS SQL Server",
+                outcome: "Streamlined certification processes and improved user convenience.",
+                link: "#"
+            },
+            {
+                title: "NUS Research Experiment Application",
+                description: `
+                    Built an e-Commerce and Windows application for collaborative online shopping and split-screen functionality.
+                    <br><br>
+                    <strong>Technical Details:</strong>
+                    - Developed using <strong>ASP.NET C#</strong> and <strong>Client-Server Socket Programming</strong>.
+                    - Enabled real-time collaboration and split-screen functionality.
+                    - Integrated with <strong>MS SQL Server</strong> for data storage.
+                    - Designed user-friendly interfaces for seamless shopping experiences.
+                `,
+                tech: "ASP.NET C#, Client-Server Socket Programming, JavaScript, MS SQL Server",
+                outcome: "Enhanced research capabilities and user collaboration.",
+                link: "#"
+            },
+            {
+                title: "PLMGS Survey Management System",
+                description: `
+                    Developed a survey portal for students, teachers, and staff, with report generation capabilities.
+                    <br><br>
+                    <strong>Technical Details:</strong>
+                    - Built using <strong>PHP</strong> and <strong>Joomla</strong> for rapid development.
+                    - Integrated with <strong>MySQL</strong> for data storage.
+                    - Enabled admin staff to generate survey reports with multiple criteria.
+                    - Designed user-friendly interfaces for survey participation.
+                `,
+                tech: "PHP, Joomla, MySQL",
+                outcome: "Improved data collection and analysis for decision-making.",
+                link: "#"
+            },
+            {
+                title: "PSD e-Test System",
+                description: `
+                    Created an e-Test system for government servants, enabling MCQ creation, batch uploads, and test assignments.
+                    <br><br>
+                    <strong>Technical Details:</strong>
+                    - Developed using <strong>ASP.NET C#</strong> and <strong>JavaScript</strong>.
+                    - Enabled batch uploads of MCQs for efficient test creation.
+                    - Automated test paper generation and candidate assignments.
+                    - Integrated with <strong>MS SQL Server</strong> for data storage.
+                `,
+                tech: "ASP.NET C#, JavaScript, MS SQL Server",
+                outcome: "Streamlined exam administration and improved efficiency.",
+                link: "#"
+            },
+            {
+                title: "Hivelocity Event Management System",
+                description: `
+                    Developed a web-based system for managing events, participant profiles, and registrations.
+                    <br><br>
+                    <strong>Technical Details:</strong>
+                    - Built using <strong>PHP</strong> for backend logic.
+                    - Designed user-friendly interfaces for event registration and management.
+                    - Integrated with <strong>MySQL</strong> for storing participant profiles and payment details.
+                    - Enabled public registration for events via the website.
+                `,
+                tech: "PHP, MySQL",
+                outcome: "Improved event management efficiency and user experience.",
+                link: "#"
+            }
+        ];
+
+        const professionalContainer = document.getElementById('professional-projects');
+        professionalProjects.forEach(project => {
+            professionalContainer.innerHTML += `
+                <div class="project-card">
+                    <h3>${project.title}</h3>
+                    <p>${project.description}</p>
+                    <p><strong>Tech:</strong> ${project.tech}</p>
+                    <p><strong>Outcome:</strong> ${project.outcome}</p>
+                </div>
+            `;
+        });
 
         // Academic Projects
         const academicProjects = [
             {
                 title: "Dynamic Bus Schedule Optimization",
                 description: `
-                    Developed a hybrid DRL-ES framework to optimize bus schedules using real-time data, reducing passenger waiting times by 20%.
+                    Developed a hybrid framework to optimize bus schedules using real-time data, reducing passenger waiting times.
                     <br><br>
                     <strong>Technical Details:</strong>
-                    - Built using <strong>Python</strong> and <strong>TensorFlow</strong> for reinforcement learning.
-                    - Integrated Evolution Strategies (ES) for initial schedule optimization.
+                    - Built using <strong>Python</strong> and <strong>TensorFlow</strong> for AI-driven optimization.
                     - Used real-time data to dynamically adjust bus schedules.
-                    - Achieved significant improvements in fleet efficiency and passenger satisfaction.
+                    - Improved fleet efficiency and passenger satisfaction.
                 `,
-                tech: "Python, TensorFlow, Reinforcement Learning",
-                outcome: "Improved fleet efficiency and reduced operational costs.",
+                tech: "Python, TensorFlow",
+                outcome: "Reduced waiting times by 20% and improved operational efficiency.",
                 link: "#"
-            },
-            // Add other academic projects here...
+            }
         ];
 
         const academicContainer = document.getElementById('academic-projects');
